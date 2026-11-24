@@ -55,7 +55,8 @@ if (session_status() === PHP_SESSION_NONE) {
     ini_set('session.cookie_httponly', '1');
     ini_set('session.use_only_cookies', '1');
     ini_set('session.cookie_samesite', 'Lax');
-    if ($protocol === 'https://') {
+    // Utilise BASE_URL pour détecter https (compatible APP_BASE_URL env var)
+    if (str_starts_with(BASE_URL, 'https://')) {
         ini_set('session.cookie_secure', '1');
     }
     session_start();
