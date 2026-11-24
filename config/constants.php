@@ -17,22 +17,27 @@ define('INCLUDES_PATH', ROOT_PATH . 'includes' . DIRECTORY_SEPARATOR);
 define('TEMPLATES_PATH', ROOT_PATH . 'templates' . DIRECTORY_SEPARATOR);
 define('UPLOADS_PATH', ROOT_PATH . 'uploads' . DIRECTORY_SEPARATOR);
 
-// Détection dynamique de l'URL de base
-$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
-$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
-$scriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
-$scriptDir = str_replace('\\', '/', $scriptDir);
-if ($scriptDir === '.' || $scriptDir === '/') {
-    $scriptDir = '';
-}
-
-// Gestion de l'URL de base propre
-if (basename($scriptDir) === 'admin') {
-    $baseUrl = $protocol . $host . dirname($scriptDir);
+// Détection de l'URL de base
+// Priorité 1 : variable d'environnement APP_BASE_URL (définie sur Render)
+// Priorité 2 : détection automatique depuis SCRIPT_NAME (local Laragon)
+if (getenv('APP_BASE_URL')) {
+    $baseUrl = rtrim(getenv('APP_BASE_URL'), '/');
 } else {
-    $baseUrl = $protocol . $host . ($scriptDir ? '/' . ltrim($scriptDir, '/') : '');
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $scriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '');
+    $scriptDir = str_replace('\\', '/', $scriptDir);
+    if ($scriptDir === '.' || $scriptDir === '/') {
+        $scriptDir = '';
+    }
+    // Gestion de l'URL de base propre
+    if (basename($scriptDir) === 'admin') {
+        $baseUrl = $protocol . $host . dirname($scriptDir);
+    } else {
+        $baseUrl = $protocol . $host . ($scriptDir ? '/' . ltrim($scriptDir, '/') : '');
+    }
+    $baseUrl = rtrim($baseUrl, '/');
 }
-$baseUrl = rtrim($baseUrl, '/');
 
 define('BASE_URL', $baseUrl);
 define('ASSETS_URL', BASE_URL . '/assets');
