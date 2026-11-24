@@ -1,0 +1,22 @@
+{
+  "name": "Philadelphie Church • CFCG Garenganze",
+  "short_name": "Philadelphie Church",
+  "description": "Application officielle de l'Église Philadelphie CFCG Garenganze : cultes, programmes, enseignements, annonces et prières.",
+  "start_url": "./index.php",
+  "display": "standalone",
+  "background_color": "#0E0E0E",
+  "theme_color": "#0E0E0E",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

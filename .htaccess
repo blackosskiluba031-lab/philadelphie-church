@@ -1,0 +1,14 @@
+# .htaccess — Configuration Apache Laragon
+RewriteEngine On
+RewriteBase /eglise-app/
+
+# Permet d'accéder à styleguide sans .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Protection des dossiers sensibles
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

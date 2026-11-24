@@ -1,0 +1,25 @@
+# Environnement & Données sensibles
+.env
+.env.local
+.env.*.local
+*.log
+
+# Dossiers d'uploads d'utilisateurs (les dossiers sont conservés via .gitkeep)
+uploads/*
+!uploads/.gitkeep
+!uploads/ui/.gitkeep
+!uploads/publications/.gitkeep
+!uploads/medias/.gitkeep
+
+# Dépendances éventuelles
+vendor/
+node_modules/
+
+# Système d'exploitation & IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~

@@ -1,0 +1,13 @@
+.git/
+.env
+.env.*
+node_modules/
+vendor/
+uploads/*
+!uploads/.gitkeep
+!uploads/ui/.gitkeep
+!uploads/publications/.gitkeep
+!uploads/medias/.gitkeep
+*.log
+.DS_Store
+Thumbs.db

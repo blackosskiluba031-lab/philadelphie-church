@@ -1,0 +1,230 @@
+/* ====================================================================
+   ÉGLISE APP - FEUILLE DE STYLE ESPACE ADMINISTRATION
+   Palette Option A : Bleu Nuit Majestueux & Or Sacré
+   ==================================================================== */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 260px;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-normal);
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.sidebar-brand {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-color);
+  text-decoration: none;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.menu-label {
+  padding: 0.75rem 0.75rem 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.menu-item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  font-size: 0.925rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.menu-item a:hover {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.menu-item.active a {
+  background-color: var(--gold-subtle);
+  color: var(--gold-primary);
+  border-left: 3px solid var(--gold-primary);
+  font-weight: 600;
+}
+
+.sidebar-user {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Contenu Admin */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-body);
+  overflow-x: hidden;
+}
+
+.admin-topbar {
+  height: 70px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-content {
+  padding: 2rem 1.75rem;
+  flex: 1;
+}
+
+/* Métriques Dashboard */
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--transition-normal);
+}
+
+.metric-card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin: 4px 0;
+  font-family: var(--font-heading);
+}
+
+.metric-label {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.metric-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: var(--gold-subtle);
+  color: var(--gold-primary);
+}
+
+/* Responsive Mobile First & Tablet */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius-md);
+}
+
+.table-responsive table {
+  min-width: 600px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@media (max-width: 992px) {
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -280px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.7);
+    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .admin-sidebar.open {
+    left: 0;
+  }
+  .admin-topbar {
+    padding: 0 1rem;
+    height: 60px;
+  }
+  .admin-content {
+    padding: 1.25rem 0.85rem;
+  }
+  .grid.grid-cols-3,
+  .grid.grid-cols-4 {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-content {
+    padding: 1rem 0.65rem;
+  }
+  .grid.grid-cols-2,
+  .grid.grid-cols-3,
+  .grid.grid-cols-4 {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+  .metric-card {
+    padding: 1.15rem;
+  }
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  .metric-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+  .btn {
+    min-height: 44px;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .form-control {
+    min-height: 44px;
+    font-size: 1rem; /* Empêche le zoom auto d'iOS */
+  }
+  .card {
+    padding: 1.25rem 1rem !important;
+  }
+}
