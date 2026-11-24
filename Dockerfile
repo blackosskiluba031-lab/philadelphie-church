@@ -34,10 +34,12 @@ RUN mkdir -p /var/www/html/uploads/ui \
     && chown -R www-data:www-data /var/www/html/uploads \
     && chmod -R 775 /var/www/html/uploads
 
-# Configuration du port dynamique pour Render (Render injecte $PORT, par défaut 80 ou 10000)
-RUN sed -i 's/Listen 80/Listen ${PORT:-80}/' /etc/apache2/ports.conf
-RUN sed -i 's/<VirtualHost \*:80>/<VirtualHost \*:${PORT:-80}>/' /etc/apache2/sites-available/000-default.conf
+# Script de démarrage pour le port dynamique Render ($PORT)
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN tr -d '\r' < /usr/local/bin/entrypoint.sh > /usr/local/bin/entrypoint.sh.tmp \
+    && mv /usr/local/bin/entrypoint.sh.tmp /usr/local/bin/entrypoint.sh \
+    && chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 80 10000
 
-CMD ["apache2-foreground"]
+CMD ["/usr/local/bin/entrypoint.sh"]
