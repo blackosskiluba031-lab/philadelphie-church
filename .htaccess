@@ -1,8 +1,8 @@
-# .htaccess — Configuration Apache Laragon
+# .htaccess - Configuration Apache (Laragon local + Render production)
 RewriteEngine On
-RewriteBase /eglise-app/
+RewriteBase /
 
-# Permet d'accéder à styleguide sans .php
+# Permet d'acceder aux pages sans .php
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
